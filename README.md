@@ -93,3 +93,19 @@ L’aperçu est hébergé sur Sites en accès privé au propriétaire :
 https://gouttieres-montreal-apercu.joelmcpherson4444.chatgpt.site
 
 L’identité du site est conservée dans `.openai/hosting.json`, avec `dist` comme sortie statique. Réutiliser ce `project_id` pour les mises à jour. Le déploiement ne change pas `business.mode`, qui reste `preview`, ni l’indexation, qui reste désactivée. Les appels et demandes réels restent bloqués. Aucun déploiement automatique depuis GitHub n’est configuré.
+
+## GitHub Pages
+
+Le workflow `.github/workflows/pages.yml` compile et déploie `main` sur GitHub Pages. Dans GitHub, ouvrir **Settings → Pages → Build and deployment → Source → GitHub Actions**. L’application connectée doit disposer du droit Pages pour activer ce réglage par API; sinon le propriétaire doit le choisir dans l’interface.
+
+Adresse prévue : https://joelmcpherson4444-wq.github.io/goutti-res-MTL/
+
+Pour compiler localement avec ce chemin :
+
+```sh
+GITHUB_PAGES=true npm run build
+GITHUB_PAGES=true npm run preview
+# http://localhost:4321/goutti-res-MTL/
+```
+
+Sans `GITHUB_PAGES=true`, le site continue de fonctionner à la racine pour Sites et l’aperçu local. Les liens, styles, scripts et images respectent le chemin choisi. GitHub Pages est public; les métadonnées `noindex, nofollow`, le numéro fictif et le formulaire simulé sont conservés. Le `robots.txt` sous le chemin du projet ne contrôle pas la racine `github.io`; les consignes noindex sont présentes dans chaque page. Pour une version publique indexable sous un chemin de projet, adapter aussi les URL canoniques et le sitemap avant activation de l’indexation.
