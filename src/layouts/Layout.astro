@@ -1,0 +1,25 @@
+---
+import { business, runtime, publicOrigin } from '../config.mjs';
+import Actions from '../components/Actions.astro';
+import '../styles/global.css';
+const { title, description } = Astro.props;
+const path = Astro.url.pathname;
+const origin = publicOrigin();
+const index = business.mode === 'production' && business.indexable && !!origin;
+const flags = runtime();
+---
+<!doctype html><html lang="fr-CA"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>{title} | {business.name}</title><meta name="description" content={description} /><meta name="robots" content={index ? 'index, follow' : 'noindex, nofollow'} />{origin && <link rel="canonical" href={new URL(path, origin).href} />}<meta name="theme-color" content="#173d52" /><link rel="icon" type="image/svg+xml" href="/favicon.svg" /></head>
+<body data-real-quotes={String(flags.quotes)} data-endpoint={flags.quotes ? business.quote.endpoint : ''}>
+<a href="#contenu" class="skip">Aller au contenu</a>
+{business.mode === 'preview' && <div class="preview-notice">Aperçu du projet · numéro fictif · aucune demande transmise</div>}
+<header><div class="header-top wrap"><a class="brand" href="/" aria-label={`${business.name} — accueil`}><span class="brand-mark" aria-hidden="true">⌂</span><span class="brand-name">{business.name}</span></a><p class="header-note">Pour les maisons d’ici.<br />Pour les pluies à venir.</p><Actions compact /></div>
+<nav aria-label="Navigation principale" class="wrap"><a href="/" aria-current={path === '/' ? 'page' : undefined}>Accueil</a><details class="services-menu"><summary>Services</summary><div>{business.services.map(s => <a href={s.href}>{s.name}</a>)}</div></details><a href="/secteurs/" aria-current={path === '/secteurs/' ? 'page' : undefined}>Secteurs</a><a href="/reparer-ou-remplacer-ses-gouttieres/" aria-current={path === '/reparer-ou-remplacer-ses-gouttieres/' ? 'page' : undefined}>Conseils</a><a href="/soumission/" aria-current={path === '/soumission/' ? 'page' : undefined}>Soumission</a></nav></header>
+<main id="contenu"><slot /></main>
+<footer><div class="wrap footer-grid"><div><a href="/" class="footer-brand">{business.name}</a><p>Comprendre vos options.<br />Préparer les bons travaux.</p><small>Nom de travail · partenaire à confirmer</small></div><div><h2>Votre projet</h2>{business.services.map(s => <a href={s.href}>{s.name}</a>)}</div><div><h2>Renseignements</h2><a href="/secteurs/">Secteurs envisagés</a><a href="/reparer-ou-remplacer-ses-gouttieres/">Réparer ou remplacer?</a><a href="/soumission/">Demander une soumission</a><p>{business.phone.display}{!flags.calls && ' · numéro fictif'}</p></div></div><div class="wrap footer-bottom">© {new Date().getFullYear()} {business.name} · Site en préparation</div></footer>
+<div class="mobile-actions"><Actions compact /></div>
+<dialog id="call-dialog" aria-labelledby="call-title"><h2 id="call-title">Numéro de démonstration</h2><p>Le {business.phone.display} est fictif. Aucun appel n’est disponible dans cet aperçu.</p><form method="dialog"><button class="button primary">Fermer</button></form></dialog>
+<script>
+import { init } from '../scripts/client';
+init();
+</script>
+</body></html>
