@@ -1,10 +1,14 @@
 ---
 import { withBase } from '../urls';
 import { business, runtime } from '../config.mjs';
-const { compact = false } = Astro.props;
+const { compact = false, prominent = false } = Astro.props;
 const { calls } = runtime();
+const mock = business.mode === 'preview';
 ---
-<div class:list={['actions', { compact }]}>
-{calls ? <a class="button outline" href={`tel:${business.phone.e164}`} data-call>Appeler<span class="phone-number"> · {business.phone.display}</span></a> : <button class="button outline" type="button" data-call>Appeler<span class="phone-number"> · {business.phone.display}</span></button>}
-<a class="button primary" href={withBase('/soumission/')}>Demander une soumission <span aria-hidden="true">›</span></a>
+<div class:list={['actions', { compact, prominent }]}>
+<a class="button primary" href={withBase('/soumission/')}>Obtenir une soumission <span aria-hidden="true">›</span></a>
+{calls || mock ? <a class="button outline call-button" href={`tel:${business.phone.e164}`} data-call data-mock-call={mock ? 'true' : undefined}>
+<svg class="phone-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a15 15 0 0 1-7-7l2-2-2-5Z" /></svg>
+<span class="call-copy"><span class="call-label">Appeler</span><span class="phone-number">{business.phone.display}</span>{prominent && mock && <small>Numéro fictif · maquette</small>}</span>
+</a> : <button class="button outline" type="button" data-call>Appeler</button>}
 </div>

@@ -2,7 +2,7 @@ declare global { interface Window { dataLayer?: Record<string, unknown>[] } }
 export function track(event: string) { (window.dataLayer ||= []).push({ event, page_path: location.pathname }); }
 export function init() {
  document.querySelectorAll<HTMLElement>('[data-call]').forEach(el => el.addEventListener('click', () => {
-  if (el instanceof HTMLAnchorElement) track('call_click');
+  if (el instanceof HTMLAnchorElement) { if (el.dataset.mockCall !== 'true') track('call_click'); }
   else (document.querySelector('#call-dialog') as HTMLDialogElement).showModal();
  }));
  const form = document.querySelector<HTMLFormElement>('#quote-form');

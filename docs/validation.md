@@ -3,8 +3,8 @@
 Date : 9 novembre 2026. Node 24.22.1, Astro 5, Chromium local via Playwright.
 
 - Compilation statique : réussie, six pages.
-- 4 tests de configuration : aperçu sans appels/envois; numéro fictif bloqué; destination HTTPS et destinataire obligatoires; validation de l’origine canonique.
-- 8 tests navigateur : pages et liens internes; métadonnées uniques; robots et sitemap hors index; clavier et dialogue fictif; champs obligatoires, téléphone et code postal; simulation sans POST et sans conversion; réponses réelles simulées (500, 200 non confirmé, succès confirmé); écran étroit de 320 px; barre mobile sans masquer le pied de page; formulaire désactivé sans JavaScript.
+- 4 tests de configuration : aperçu avec liens téléphoniques fictifs, sans envois réels; numéro fictif bloqué; destination HTTPS et destinataire obligatoires; validation de l’origine canonique.
+- 8 tests navigateur : pages et liens internes; métadonnées uniques; robots et sitemap hors index; clavier et destinations téléphoniques de la maquette; champs obligatoires, téléphone et code postal; simulation sans POST et sans conversion; réponses réelles simulées (500, 200 non confirmé, succès confirmé); écran étroit de 320 px; barre mobile sans masquer le pied de page; formulaire désactivé sans JavaScript.
 - Captures de l’accueil à 390 × 844 et 1440 × 1000, inspection visuelle des deux formats.
 - Aucun service d’envoi externe configuré et aucun appel réel effectué.
 

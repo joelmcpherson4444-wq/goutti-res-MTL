@@ -1,6 +1,10 @@
 export const business = {
   name: 'Gouttières Montréal',
-  phone: { display: '514 555-0148', e164: '+15145550148', verified: false },
+  phone: {
+    display: '514-123-4567', // Seul numéro à remplacer.
+    get e164() { return '+1' + this.display.replace(/\D/g, ''); },
+    verified: false
+  },
   // Independent gates: a real phone can be enabled before the form.
   mode: 'preview', publicUrl: '', indexable: false,
   quote: { endpoint: '', recipient: '', enabled: false },
@@ -14,7 +18,7 @@ export const business = {
 };
 export function runtime(c = business) {
  const production = c.mode === 'production';
- const validPhone = /^\+1[2-9]\d{9}$/.test(c.phone.e164) && c.phone.e164 !== '+15145550148';
+ const validPhone = /^\+1[2-9]\d{2}[2-9]\d{6}$/.test(c.phone.e164);
  let endpoint = false;
  try { endpoint = new URL(c.quote.endpoint).protocol === 'https:'; } catch {}
  return { calls: production && c.phone.verified && validPhone, quotes: production && c.quote.enabled && endpoint && !!c.quote.recipient.trim() };
