@@ -1,0 +1,9 @@
+---
+import { business, runtime } from '../config.mjs';
+const { compact = false } = Astro.props;
+const { calls } = runtime();
+---
+<div class:list={['actions', { compact }]}>
+{calls ? <a class="button outline" href={`tel:${business.phone.e164}`} data-call>Appeler<span class="phone-number"> · {business.phone.display}</span></a> : <button class="button outline" type="button" data-call>Appeler<span class="phone-number"> · {business.phone.display}</span></button>}
+<a class="button primary" href="/soumission/">Demander une soumission <span aria-hidden="true">›</span></a>
+</div>
