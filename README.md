@@ -86,3 +86,10 @@ Avant d’activer l’envoi réel :
 Voir `docs/validation.md` pour les contrôles et limites. Captures de l’accueil : `docs/accueil-mobile.png` et `docs/accueil-desktop.png`. Elles présentent les images originales optimisées. La navigation s’inspire seulement du regroupement Services / Secteurs du site de référence; les contenus, styles et composants sont propres au projet.
 
 Avant mise en ligne : revue de la PR, partenaire et couverture confirmés, vrai numéro testé, destinataire nommé, service d’envoi et règles de confidentialité validés, URL publique configurée, captures renouvelées, validation finale et autorisation de publier. Aucun déploiement automatique dans ce dépôt.
+
+## Aperçu hébergé avec Sites
+
+L’aperçu est hébergé sur Sites en accès privé au propriétaire :
+https://gouttieres-montreal-apercu.joelmcpherson4444.chatgpt.site
+
+L’identité du site est conservée dans `.openai/hosting.json`, avec `dist` comme sortie statique. Réutiliser ce `project_id` pour les mises à jour. Le déploiement ne change pas `business.mode`, qui reste `preview`, ni l’indexation, qui reste désactivée. Les appels et demandes réels restent bloqués. Aucun déploiement automatique depuis GitHub n’est configuré.
