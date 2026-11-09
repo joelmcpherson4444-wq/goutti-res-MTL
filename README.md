@@ -85,4 +85,4 @@ Avant d’activer l’envoi réel :
 
 Voir `docs/validation.md` pour les contrôles et limites. Captures de l’accueil : `docs/accueil-mobile.png` et `docs/accueil-desktop.png`. Elles reflètent les cadres provisoires tant que les fichiers originaux manquent. La navigation s’inspire seulement du regroupement Services / Secteurs du site de référence; les contenus, styles et composants sont propres au projet.
 
-Avant mise en ligne : accès GitHub en écriture, revue de la PR, photos originales, partenaire et couverture confirmés, vrai numéro testé, destinataire nommé, service d’envoi et règles de confidentialité validés, URL publique configurée, captures renouvelées, validation finale et autorisation de publier. Aucun déploiement automatique dans ce dépôt.
+Avant mise en ligne : revue de la PR, photos originales, partenaire et couverture confirmés, vrai numéro testé, destinataire nommé, service d’envoi et règles de confidentialité validés, URL publique configurée, captures renouvelées, validation finale et autorisation de publier. Aucun déploiement automatique dans ce dépôt.

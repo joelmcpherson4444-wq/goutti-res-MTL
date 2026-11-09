@@ -12,6 +12,6 @@ Date : 9 novembre 2026. Node 24.22.1, Astro 5, Chromium local via Playwright.
 
 Les originaux des photos sont visibles dans le chat mais indisponibles comme fichiers téléchargeables. Les cadres provisoires sont explicites; le script d’optimisation et les composants responsive sont prêts. La qualité des recadrages et le poids final des WebP devront être vérifiés lorsque les fichiers seront intégrés.
 
-GitHub autorise la lecture, mais l’application refuse les écritures : `403 Resource not accessible by integration`. La branche est créée localement; le push et la PR restent bloqués. La description proposée de PR figure dans `docs/pull-request.md`.
+L’accès GitHub en écriture a été rétabli. La branche `feat/site-gouttieres-montreal` a été rattachée au commit initial de `main` et poussée. La description de PR figure dans `docs/pull-request.md`.
 
 Les tests d’envoi utilisent des réponses réseau interceptées, pas une boîte de réception réelle. La réception par le partenaire devra être vérifiée après configuration. Le clavier et les largeurs sont testés; aucun audit exhaustif par lecteur d’écran n’est revendiqué. Aucun déploiement effectué.
