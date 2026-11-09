@@ -9,7 +9,9 @@ test('pages, navigation, metadata and local links', async ({page, request}) => {
   titles.add(await page.title());
   await expect(page.locator('meta[name=description]')).toHaveAttribute('content',/.{40,}/);
   await expect(page.locator('meta[name=robots]')).toHaveAttribute('content','noindex, nofollow');
-  expect(await page.locator('a[href^="tel:"]').count()).toBe(0);
+  const calls = page.locator('a[href^="tel:"]');
+  expect(await calls.count()).toBeGreaterThan(0);
+  for (const call of await calls.all()) await expect(call).toHaveAttribute('href', 'tel:+15141234567');
   const hrefs=await page.locator('a[href^="/"]').evaluateAll(xs=>[...new Set(xs.map(a=>a.getAttribute('href')))]);
   for (const href of hrefs) expect((await request.get(href)).status()).toBe(200);
  }
@@ -17,16 +19,15 @@ test('pages, navigation, metadata and local links', async ({page, request}) => {
  expect(await (await request.get('/robots.txt')).text()).toContain('Disallow: /');
  expect(await (await request.get('/sitemap.xml')).text()).not.toContain('<loc>');
 });
-test('keyboard services menu, skip link and fictitious call dialog', async ({page}) => {
+test('keyboard services menu, skip link and mock call destination', async ({page}) => {
  await page.goto('/');
  await page.keyboard.press('Tab'); await expect(page.locator('.skip')).toBeFocused();
- await page.keyboard.press('Enter'); expect(new URL(page.url()).hash).toBe('#contenu');
+ await page.keyboard.press('Enter'); await expect(page).toHaveURL(/#contenu$/);
  await page.locator('.services-menu summary').focus(); await page.keyboard.press('Enter');
  await expect(page.locator('.services-menu')).toHaveAttribute('open','');
  await page.keyboard.press('Tab'); await expect(page.locator('.services-menu a').first()).toBeFocused();
- await page.locator('.hero [data-call]').click(); await expect(page.getByRole('dialog')).toBeVisible();
- await expect(page.getByRole('dialog')).toContainText('fictif');
- await page.keyboard.press('Escape'); await expect(page.getByRole('dialog')).not.toBeVisible();
+ await page.locator('.hero [data-call]').focus();
+ await expect(page.locator('.hero [data-call]')).toHaveAttribute('href', 'tel:+15141234567');
  expect(await page.evaluate(()=>window.dataLayer||[])).toEqual([]);
 });
 test('form validation and simulated success transmit nothing', async ({page}) => {
@@ -52,6 +53,8 @@ for (const [name,width,height] of [['mobile',390,844],['desktop',1440,1000]]) {
   await page.screenshot({path:`docs/accueil-${name}.png`,fullPage:true});
   if(name==='mobile') {
    await expect(page.locator('.mobile-actions')).toBeVisible();
+   await expect(page.locator('.mobile-actions .phone-number')).toBeVisible();
+   await expect(page.locator('.mobile-actions .phone-number')).toHaveText('514-123-4567');
    await page.evaluate(()=>window.scrollTo(0,document.body.scrollHeight));
    const footer=await page.locator('.footer-bottom').boundingBox(); const bar=await page.locator('.mobile-actions').boundingBox();
    expect(footer.y+footer.height).toBeLessThanOrEqual(bar.y);

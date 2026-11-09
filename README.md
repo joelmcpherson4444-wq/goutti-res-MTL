@@ -59,13 +59,11 @@ La compilation refuse une indexation sans mode production, URL publique valide e
 
 ## Appels et suivi
 
-Le numéro livré `514 555-0148` est fictif. En aperçu, « Appeler » ouvre une boîte de dialogue explicite, sans lien `tel:` et sans événement de conversion. Pour activer les appels :
+Le numéro livré `514-123-4567` est fictif. À la demande du propriétaire, les liens d’appel de la maquette utilisent `tel:+15141234567`, y compris en mode aperçu. Le numéro est visible en haut à droite sur ordinateur et dans la barre fixe sur cellulaire. Ces clics de démonstration ne déclenchent pas `call_click`.
 
-- Définir le vrai numéro dans `phone.display` et au format E.164 dans `phone.e164`.
-- Vérifier le routage et mettre `phone.verified: true` et `mode: 'production'`.
-- Si vous utilisez un numéro de suivi, utiliser ce numéro dans les deux champs et configurer son transfert vers le partenaire chez votre fournisseur. Tester un vrai appel et le traitement des appels manqués.
+**Un seul endroit à modifier : `business.phone.display` dans `src/config.mjs`.** Le format téléphonique `e164` est dérivé automatiquement; ne pas le saisir séparément. Pour un vrai numéro de suivi, définir son affichage ici, vérifier le transfert chez le fournisseur, puis passer `phone.verified` à `true` et `mode` à `production`. Le format est prévu pour un numéro nord-américain à 10 chiffres.
 
-Le clic sur un lien téléphonique réel pousse `{ event: 'call_click', page_path }` dans `window.dataLayer`. Il mesure un clic, pas un appel abouti. Aucun script de mesure tiers n’est livré; connecter ensuite votre outil de mesure et définir la gestion du consentement appropriée. Ne pas placer les noms, téléphones ou descriptions dans les événements.
+Un clic en production sur un numéro vérifié pousse `{ event: 'call_click', page_path }` dans `window.dataLayer`. Il mesure un clic, pas un appel abouti. Aucun script de mesure tiers n’est livré. Ne pas placer les noms, téléphones ou descriptions dans les événements.
 
 ## Destination des demandes
 
