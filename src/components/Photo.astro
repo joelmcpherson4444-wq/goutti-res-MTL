@@ -4,6 +4,6 @@ const { kind = 'duplex', eager = false } = Astro.props;
 const alt = kind === 'duplex' ? business.images.duplexAlt : business.images.downspoutAlt;
 ---
 <figure class:list={['service-photo', kind]}>
-{business.images.ready ? <picture><source media="(max-width: 640px)" srcset={`/images/${kind}-mobile.webp`} /><img src={`/images/${kind}.webp`} width="1200" height="1000" alt={alt} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} /></picture> : <div class="photo-pending"><span aria-hidden="true">⌂</span><p>Illustration du service</p><small>Photo originale à intégrer</small></div>}
+{business.images.ready ? <picture><source media="(max-width: 700px)" srcset={`/images/${kind}-mobile.webp`} /><img src={`/images/${kind}.webp`} width="1200" height="1024" alt={alt} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} /></picture> : <div class="photo-pending"><span aria-hidden="true">⌂</span><p>Illustration du service</p><small>Photo originale à intégrer</small></div>}
 <figcaption>Illustration du service · aucune réalisation revendiquée</figcaption>
 </figure>

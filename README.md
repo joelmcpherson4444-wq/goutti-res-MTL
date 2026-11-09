@@ -27,17 +27,17 @@ Les tests navigateur utilisent Chromium à `/usr/bin/chromium`. Adapter `playwri
 
 Modifier `src/config.mjs` : `business.name`, `phone`, `services`, `sectors`, `images`, `mode`, `publicUrl`, `indexable` et `quote`. Le nom est un nom de travail et les secteurs proposés sont à confirmer avec le partenaire. Les textes éditoriaux des pages demeurent dans `src/pages/`.
 
-### Images originales — intégration en attente
+### Images originales
 
-Les deux images ont été montrées dans la conversation mais leurs fichiers n’étaient pas disponibles dans l’environnement d’exécution. Aucun visuel provenant d’une autre entreprise n’a été utilisé. Les cadres d’aperçu indiquent explicitement la photo manquante.
+Les deux originaux sont conservés dans `assets/originals/duplex.png` et `assets/originals/downspout.png`. Les liens fournis dans `assets/originals/README.md` documentent leur provenance. Aucun visuel provenant d’une autre entreprise n’a été utilisé.
 
-Lorsque les originaux sont accessibles :
+Pour régénérer les versions optimisées :
 
 ```sh
-npm run images -- /chemin/duplex.png /chemin/gouttiere-blanche.png
+npm run images -- assets/originals/duplex.png assets/originals/downspout.png
 ```
 
-Le script produit quatre WebP dans `public/images/` : `duplex.webp`, `duplex-mobile.webp`, `downspout.webp`, `downspout-mobile.webp`. Vérifier les recadrages (point d’intérêt à droite), puis mettre `images.ready: true`. Les textes alternatifs sont centralisés. La photo du duplex est prioritaire sur l’accueil; celle de la descente apparaît sur la page correspondante. Les visuels sont présentés comme illustrations, sans revendication de réalisation.
+Le script produit quatre WebP dans `public/images/` : `duplex.webp`, `duplex-mobile.webp`, `downspout.webp`, `downspout-mobile.webp`. Les versions ordinateur pèsent environ 211 et 166 Kio; les recadrages mobiles environ 92 et 68 Kio. `images.ready` est activé. Les textes alternatifs sont centralisés. La photo du duplex est prioritaire sur l’accueil; celle de la descente apparaît sur la page correspondante. Les visuels sont présentés comme illustrations, sans revendication de réalisation.
 
 ## Aperçu et indexation
 
@@ -83,6 +83,6 @@ Avant d’activer l’envoi réel :
 
 ## Validation et transfert
 
-Voir `docs/validation.md` pour les contrôles et limites. Captures de l’accueil : `docs/accueil-mobile.png` et `docs/accueil-desktop.png`. Elles reflètent les cadres provisoires tant que les fichiers originaux manquent. La navigation s’inspire seulement du regroupement Services / Secteurs du site de référence; les contenus, styles et composants sont propres au projet.
+Voir `docs/validation.md` pour les contrôles et limites. Captures de l’accueil : `docs/accueil-mobile.png` et `docs/accueil-desktop.png`. Elles présentent les images originales optimisées. La navigation s’inspire seulement du regroupement Services / Secteurs du site de référence; les contenus, styles et composants sont propres au projet.
 
-Avant mise en ligne : revue de la PR, photos originales, partenaire et couverture confirmés, vrai numéro testé, destinataire nommé, service d’envoi et règles de confidentialité validés, URL publique configurée, captures renouvelées, validation finale et autorisation de publier. Aucun déploiement automatique dans ce dépôt.
+Avant mise en ligne : revue de la PR, partenaire et couverture confirmés, vrai numéro testé, destinataire nommé, service d’envoi et règles de confidentialité validés, URL publique configurée, captures renouvelées, validation finale et autorisation de publier. Aucun déploiement automatique dans ce dépôt.

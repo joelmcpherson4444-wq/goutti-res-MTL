@@ -10,7 +10,7 @@ Date : 9 novembre 2026. Node 24.22.1, Astro 5, Chromium local via Playwright.
 
 ## Limites à lever
 
-Les originaux des photos sont visibles dans le chat mais indisponibles comme fichiers téléchargeables. Les cadres provisoires sont explicites; le script d’optimisation et les composants responsive sont prêts. La qualité des recadrages et le poids final des WebP devront être vérifiés lorsque les fichiers seront intégrés.
+Les deux originaux ajoutés au dépôt ont été intégrés : duplex en brique à l’accueil, gros plan blanc sur la page des descentes pluviales. Quatre WebP sont servis localement, avec recadrages mobiles et textes alternatifs descriptifs. Les captures mobile et ordinateur ont été renouvelées après intégration.
 
 L’accès GitHub en écriture a été rétabli. La branche `feat/site-gouttieres-montreal` a été rattachée au commit initial de `main` et poussée. La description de PR figure dans `docs/pull-request.md`.
 

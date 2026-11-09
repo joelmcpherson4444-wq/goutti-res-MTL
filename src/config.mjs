@@ -10,7 +10,7 @@ export const business = {
     { name: 'Descentes pluviales', href: '/descentes-pluviales/', summary: 'Acheminer l’eau recueillie vers un point d’évacuation approprié.' }
   ],
   sectors: ['Ahuntsic-Cartierville', 'Rosemont–La Petite-Patrie', 'Villeray–Saint-Michel–Parc-Extension', 'Mercier–Hochelaga-Maisonneuve', 'Saint-Laurent', 'Verdun', 'Le Sud-Ouest', 'Rivière-des-Prairies–Pointe-aux-Trembles'],
-  images: { ready: false, duplexAlt: 'Façade d’un duplex en brique avec des gouttières et une descente pluviale noires.', downspoutAlt: 'Gouttière blanche reliée à une descente pluviale sur un mur de brique.' }
+  images: { ready: true, duplexAlt: 'Façade d’un duplex en brique avec des gouttières et une descente pluviale noires.', downspoutAlt: 'Gouttière blanche reliée à une descente pluviale sur un mur de brique.' }
 };
 export function runtime(c = business) {
  const production = c.mode === 'production';
